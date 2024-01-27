@@ -1,6 +1,7 @@
 import { HouseOutlined } from "@mui/icons-material";
 import { Typography, Breadcrumbs } from "@mui/material";
 import { Link, useLocation } from "@remix-run/react";
+import defaultTheme from "~/theme/theme";
 
 export default function Breadcrumb() {
   const location = useLocation();
@@ -10,16 +11,16 @@ export default function Breadcrumb() {
 
   return (
     <Breadcrumbs separator="›" aria-label="breadcrumb">
-      <Typography color="inherit" fontSize="15px">
-        <Link to="/" style={{ color: "gray", textDecoration: "none" }}>
+      <Typography fontSize="15px">
+        <Link to="/" style={{ color: defaultTheme.palette.text.secondary, textDecoration: "none" }}>
           <HouseOutlined fontSize="small" />
         </Link>
       </Typography>
       {pathname != "/" ? (
         getPath.map((value, i) => (
-          <Typography key={i} fontSize="15px" color="text.primary" sx={{ textTransform: "capitalize" }}>
+          <Typography key={i} fontSize="15px" color={defaultTheme.palette.text.primary} sx={{ textTransform: "capitalize" }}>
             {i != getPath.length - 1 ? (
-              <Link to={value} style={{ color: "gray", textDecoration: "none" }}>
+              <Link to={value} color={defaultTheme.palette.text.secondary} style={{ textDecoration: "none" }}>
                 {value}
               </Link>
             ) : (

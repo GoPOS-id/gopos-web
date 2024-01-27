@@ -5,9 +5,27 @@ const defaultTheme = createTheme({
     mode: "light",
     primary: {
       main: "#078FFF",
+      contrastText: "#FFFFFF",
     },
     secondary: {
-      main: "#078FFF",
+      main: "#FF8C00",
+      contrastText: "#FFFFFF",
+    },
+    success: {
+      main: "#00B200",
+      contrastText: "#FFFFFF",
+    },
+    error: {
+      main: "#FF0000",
+      contrastText: "#FFFFFF",
+    },
+    warning: {
+      main: "#FFC400",
+      contrastText: "#FFFFFF",
+    },
+    text: {
+      primary: "#2E2E2E",
+      secondary: "#71747D",
     },
   },
   components: {

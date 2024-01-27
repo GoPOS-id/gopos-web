@@ -1,12 +1,6 @@
 import { List, ListItem, Typography } from "@mui/material";
 import { CustomDrawer, ListItems } from "~/components/CustomDrawer";
-import {
-  AddShoppingCartOutlined,
-  DashboardOutlined,
-  Inventory2Outlined,
-  PeopleOutline,
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
+import { AddShoppingCartOutlined, AssessmentOutlined, DashboardOutlined, Inventory2Outlined, PeopleOutline, ShoppingCartOutlined } from "@mui/icons-material";
 import { useLocation } from "@remix-run/react";
 
 export default function Sidebar() {
@@ -21,12 +15,8 @@ export default function Sidebar() {
             GOPOS
           </Typography>
         </ListItem>
-        <ListItems selected={getpath[1] == "" && true} href="/" text="Dashboard">
-          <DashboardOutlined />
-        </ListItems>
-        <ListItems selected={getpath[1] == "purchase" && true} href="/purchase" text="New Transactions">
-          <AddShoppingCartOutlined />
-        </ListItems>
+        <ListItems text="Dashboard" icon={DashboardOutlined} href="/" />
+        <ListItems text="Transactions" icon={AddShoppingCartOutlined} href="/transactions" />
       </List>
       <List>
         <ListItem>
@@ -34,15 +24,9 @@ export default function Sidebar() {
             MANAGE
           </Typography>
         </ListItem>
-        <ListItems selected={getpath[1] == "users" && true} href="/" text="Users">
-          <PeopleOutline />
-        </ListItems>
-        <ListItems selected={getpath[1] == "products" && true} href="/products" text="Products">
-          <Inventory2Outlined />
-        </ListItems>
-        <ListItems selected={getpath[1] == "transactions" && true} href="/transactions" text="Transactions">
-          <ShoppingCartOutlined />
-        </ListItems>
+        <ListItems text="Users" icon={PeopleOutline} href="/users" />
+        <ListItems text="Products" icon={Inventory2Outlined} href="/products" />
+        <ListItems text="Reports" icon={AssessmentOutlined} href="/report" />
       </List>
     </CustomDrawer>
   );

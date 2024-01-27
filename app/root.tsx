@@ -2,7 +2,7 @@ import type { LinksFunction } from "@remix-run/node";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from "@remix-run/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Children, useEffect } from "react";
 import { withEmotionCache } from "@emotion/react";
 import theme from "./theme/theme";
@@ -45,7 +45,7 @@ const Document = withEmotionCache(({ children, title }: IDocumentProps, emotionC
         />
         <Links />
       </head>
-      <body style={{ padding: 0, margin: 0 }}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 });
@@ -53,6 +53,7 @@ const Document = withEmotionCache(({ children, title }: IDocumentProps, emotionC
 const RootLayout = () => {
   return (
     <Document>
+      <CssBaseline />
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterLuxon}>
           <LoadingProvider>
@@ -75,8 +76,11 @@ const App = () => {
   useEffect(() => {
     if (navigation.state === "loading") {
       loading.showLoading();
+    } else if (navigation.state === "submitting") {
+      loading.showSubmitting();
     } else if (navigation.state === "idle") {
       loading.hideLoading();
+      loading.hideSubmitting();
     }
   }, [navigation.state]);
 

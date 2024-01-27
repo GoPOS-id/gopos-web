@@ -1,23 +1,12 @@
-import {
-  Box,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  SvgIconTypeMap,
-  Toolbar,
-} from "@mui/material";
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SvgIconTypeMap, Toolbar } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import React from "react";
+import React, { ReactElement } from "react";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { useHref } from "@remix-run/react";
+import { Link, useLocation } from "@remix-run/react";
 
 import theme from "~/theme/theme";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 export function CustomDrawer({ children }: { children: React.ReactNode }) {
   return (
     <Drawer
@@ -28,34 +17,39 @@ export function CustomDrawer({ children }: { children: React.ReactNode }) {
         flexShrink: 0,
         zIndex: 100,
         border: "none",
-        boxShadow: "5px 0px 10px rgba(0, 0, 0, 0.1)",
-        [`& .MuiDrawer-paper`]: { width: drawerWidth },
+        boxShadow: "0px 6px 9px -5px rgba(0, 0, 0, 0.1)",
+        [`& .MuiDrawer-paper`]: { width: drawerWidth, border: "none" },
       }}
     >
       <Toolbar />
-      <Box sx={{ paddingTop: "0.5rem", overflow: "auto" }}>{children}</Box>
+      <Box sx={{ paddingTop: "0.2rem", overflow: "auto" }}>{children}</Box>
     </Drawer>
   );
 }
 
-export function ListItems({
-  text,
-  href,
-  children,
-  selected = false,
-}: {
+interface IconProps {
+  icon: React.ElementType; // Type for Material-UI icon component
   text: string;
   href: string;
-  children: React.ReactNode;
-  selected: boolean;
-}) {
-  const hreff = useHref(href);
+}
+
+export const ListItems: React.FC<IconProps> = ({ text, href, icon }): ReactElement => {
+  const IconComponent = icon;
+  const location = useLocation();
+  const pathname = location.pathname;
+  const getpath = pathname.split("/");
+  const parseHref = href.split("/");
+  const getActive = parseHref[1];
   return (
     <ListItem disablePadding>
-      <ListItemButton href={hreff} selected={selected}>
-        <ListItemIcon sx={{ color: selected ? theme.palette.primary.main : "" }}>{children}</ListItemIcon>
-        <ListItemText sx={{ color: selected ? theme.palette.primary.main : "", fontWeight: "700" }} primary={text} />
-      </ListItemButton>
+      <Link to={href} style={{ width: "100%", textDecoration: "none", color: "GrayText" }}>
+        <ListItemButton selected={getpath[1] == getActive ? true : false}>
+          <ListItemIcon sx={{ color: getpath[1] == getActive ? theme.palette.primary.main : "" }}>
+            <IconComponent />
+          </ListItemIcon>
+          <ListItemText sx={{ color: getpath[1] == getActive ? theme.palette.primary.main : "grayText" }} primary={text} />
+        </ListItemButton>
+      </Link>
     </ListItem>
   );
-}
+};
