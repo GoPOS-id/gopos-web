@@ -16,12 +16,12 @@ export const loader = async (args: LoaderFunctionArgs) => {
 export default function Layout() {
   const loaders = useLoaderData<DataResponse<inUserDto>>();
   return (
-    <Box display="flex">
+    <Box display="flex" sx={{ backgroundColor: "#F0FAFD", minHeight: "100vh" }}>
       <AppBars title={loaders.data.fullname!} />
       <Sidebar />
       <Box component="main" flexGrow={1} p={1}>
         <Toolbar />
-        <Container maxWidth="xl">
+        <Container sx={{ paddingTop: "1.5rem" }} maxWidth="xl">
           <Breadcrumb />
           <Outlet />
         </Container>

@@ -1,9 +1,10 @@
-import { AppBar, Box, Button, ListItemIcon, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Avatar, Box, Button, ListItemIcon, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import { AccountCircleOutlined, ArrowDropDown, LogoutOutlined, ShoppingCartOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { redirect, redirectDocument } from "@remix-run/node";
 import theme from "~/theme/theme";
 import { useNavigate } from "@remix-run/react";
+import { AvatarUtils } from "~/utils/avatarUtils";
 
 export default function AppBars({ title }: { title: string }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -34,25 +35,22 @@ export default function AppBars({ title }: { title: string }) {
       }}
     >
       <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
-          <img src="/assets/logo-white.png" alt="logo" width={150} height="100%" />
+        <Box sx={{ flexGrow: 1, paddingY: "5px" }}>
+          <img src="/assets/logo-white.png" alt="logo" width={185} height="100%" />
         </Box>
         <div>
           <Button
             aria-label="account of current user"
-            sx={{ cursor: "pointer", paddingLeft: "1rem" }}
+            sx={{ cursor: "pointer", paddingX: "1rem" }}
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleMenu}
             color="inherit"
           >
-            <Typography
-              component="label"
-              sx={{ marginRight: "0.3rem", cursor: "pointer", textTransform: "capitalize" }}
-            >
+            <Typography component="label" sx={{ cursor: "pointer", textTransform: "capitalize" }}>
               {title}
             </Typography>
-            <ArrowDropDown />
+            <Avatar {...AvatarUtils.stringAvatar(title ?? "unknown")} sx={{ marginLeft: "10px" }} />
           </Button>
           <Menu
             id="menu-appbar"

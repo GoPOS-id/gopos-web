@@ -1,4 +1,4 @@
-import { Divider, List, ListItem, Typography } from "@mui/material";
+import { List, ListItem, Typography } from "@mui/material";
 import { CustomDrawer, ListItems } from "~/components/CustomDrawer";
 import {
   AddShoppingCartOutlined,
@@ -28,7 +28,6 @@ export default function Sidebar() {
           <AddShoppingCartOutlined />
         </ListItems>
       </List>
-      <Divider />
       <List>
         <ListItem>
           <Typography fontSize="small" color="grayText">
