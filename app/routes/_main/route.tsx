@@ -1,13 +1,12 @@
 import { Box, Container, Toolbar } from "@mui/material";
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
-import Breadcrumb from "./Breadcrumb";
-import Sidebar from "./Sidebar";
 import { loaderServer } from "./loader.server";
 import { DataResponse } from "~/data-response";
 import { inUserDto } from "~/dtos/userDtos";
-import { useEffect } from "react";
 import AppBars from "./AppBars";
+import Breadcrumb from "./Breadcrumb";
+import Sidebar from "./Sidebar";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   return loaderServer(args);
@@ -16,7 +15,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 export default function Layout() {
   const loaders = useLoaderData<DataResponse<inUserDto>>();
   return (
-    <Box display="flex" sx={{ backgroundColor: "#F0FAFD", minHeight: "100vh" }}>
+    <Box display="flex" sx={{ backgroundColor: "#F7FDFF", minHeight: "100vh" }}>
       <AppBars title={loaders.data.fullname!} />
       <Sidebar />
       <Box component="main" flexGrow={1} p={1}>
