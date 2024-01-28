@@ -1,6 +1,6 @@
 import { List, ListItem, Typography } from "@mui/material";
 import { CustomDrawer, ListItems } from "~/components/CustomDrawer";
-import { AddShoppingCartOutlined, AssessmentOutlined, DashboardOutlined, Inventory2Outlined, PeopleOutline, ShoppingCartOutlined } from "@mui/icons-material";
+import { AddShoppingCartOutlined, AssessmentOutlined, DashboardOutlined, Inventory2Outlined, PeopleOutline, ShoppingBagOutlined, ShoppingCartOutlined } from "@mui/icons-material";
 import { useLocation } from "@remix-run/react";
 
 export default function Sidebar() {
@@ -16,7 +16,7 @@ export default function Sidebar() {
           </Typography>
         </ListItem>
         <ListItems text="Dashboard" icon={DashboardOutlined} href="/" />
-        <ListItems text="Transactions" icon={AddShoppingCartOutlined} href="/transactions" />
+        <ListItems text="Orders" icon={ShoppingBagOutlined} href="/orders" />
       </List>
       <List>
         <ListItem>

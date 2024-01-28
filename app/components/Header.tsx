@@ -3,7 +3,7 @@ import theme from "~/theme/theme";
 
 export default function Header({ title, desc }: { title: string; desc: string }) {
   return (
-    <Stack sx={{ marginBottom: "2rem" }}>
+    <Stack sx={{ marginBottom: "1rem" }}>
       <Typography variant="h3" color={theme.palette.text.primary} component="h1" sx={{ marginTop: "0.2rem", textTransform: "capitalize" }}>
         {title}
       </Typography>
