@@ -19,10 +19,6 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  return loaderServer(args);
-};
-
 export default function Index() {
   return (
     <>

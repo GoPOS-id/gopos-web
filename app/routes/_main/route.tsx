@@ -1,4 +1,4 @@
-import { Box, Container, Toolbar } from "@mui/material";
+import { Box, Container, Toolbar, Typography } from "@mui/material";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { loaderServer } from "./loader.server";
@@ -18,7 +18,7 @@ export default function Layout() {
     <Box display="flex" sx={{ backgroundColor: "#F7FDFF", minHeight: "100vh" }}>
       <AppBars title={loaders.data.fullname!} />
       <Sidebar />
-      <Box component="main" flexGrow={1} p={1}>
+      <Box component="main" flexGrow={1} p={1} sx={{ paddingBottom: "30px" }}>
         <Toolbar />
         <Container sx={{ paddingTop: "1.5rem" }} maxWidth="xl">
           <Breadcrumb />

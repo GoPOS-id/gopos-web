@@ -20,12 +20,14 @@ export class AvatarUtils {
   }
 
   static stringAvatar(name: string) {
-    const value = name.toUpperCase();
+    const data = name.toUpperCase();
+    const value = data.split(" ");
+    const init = value.length > 1 ? value[0][0] + value[1][0] : value[0][0];
     return {
       sx: {
-        bgcolor: AvatarUtils.stringToColor(value),
+        bgcolor: AvatarUtils.stringToColor(init),
       },
-      children: `${value.split(" ")[0][0]}${value.split(" ")[1][0]}`,
+      children: `${init}`,
     };
   }
 }

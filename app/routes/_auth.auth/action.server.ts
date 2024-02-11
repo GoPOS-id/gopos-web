@@ -2,7 +2,7 @@ import { ActionFunctionArgs, json, redirect } from "@remix-run/node";
 import axios from "axios";
 import { DataResponse, isDataResponse } from "~/data-response";
 import { InLoginDto } from "~/dtos/loginDtos";
-import { useHttpHandler } from "~/hooks/useHttpHandler..server";
+import { useHttpHandler } from "~/hooks/useHttpHandler.server";
 import { AuthenticationServices } from "~/services/authenticationServices";
 import { getSession, setSession } from "~/session.server";
 

@@ -1,6 +1,6 @@
 import { DataResponse } from "~/data-response";
 import { inUserDto } from "~/dtos/userDtos";
-import { useRouteLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { CardWidget } from "~/components/Widget";
 import { Avatar, Box, Card, Stack, Typography } from "@mui/material";
 import { AvatarUtils } from "~/utils/avatarUtils";
@@ -8,9 +8,9 @@ import { EmailOutlined, KeyOutlined, VerifiedOutlined } from "@mui/icons-materia
 import defaultTheme from "~/theme/theme";
 
 export default function ProfileCard() {
-  const loaders = useRouteLoaderData<DataResponse<inUserDto>>("routes/_main")!;
+  const loaders = useLoaderData<DataResponse<inUserDto>>()!;
   return (
-    <CardWidget sx={{ height: "100%", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <CardWidget sx={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Box width="100%">
         <Stack width="100%" display="flex" justifyContent="center" alignItems="center">
           <Avatar {...AvatarUtils.stringAvatar(loaders.data.fullname!)} sx={{ width: 111, height: 111, fontSize: 111 / 3, marginBottom: "17px" }} />

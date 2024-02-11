@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs, redirect } from "@remix-run/node";
-import { useHttpHandler } from "~/hooks/useHttpHandler..server";
+import { useHttpHandler } from "~/hooks/useHttpHandler.server";
 import { AuthenticationServices } from "~/services/authenticationServices";
 import { getSession } from "~/session.server";
 

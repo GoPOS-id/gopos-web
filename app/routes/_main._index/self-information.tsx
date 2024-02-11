@@ -2,12 +2,12 @@ import { AssignmentOutlined, PersonOutline, ReceiptOutlined, ShoppingCartOutline
 import { Grid } from "@mui/material";
 import { CardWidget, InformationWidget } from "~/components/Widget";
 import { formatDate, formatNumber } from "~/utils/formatUtils";
-import { useLoaderData } from "@remix-run/react";
+import { useRouteLoaderData } from "@remix-run/react";
 import { DataResponse } from "~/data-response";
 import { inUserDto } from "~/dtos/userDtos";
 
 export default function SelfInformation() {
-  const loaders = useLoaderData<DataResponse<inUserDto>>();
+  const loaders = useRouteLoaderData<DataResponse<inUserDto>>("routes/_main")!;
   return (
     <CardWidget sx={{ marginBottom: "20px" }}>
       <Grid container spacing={2}>
