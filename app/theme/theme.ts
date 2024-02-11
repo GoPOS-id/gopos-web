@@ -1,3 +1,4 @@
+import { BorderColor } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 const defaultTheme = createTheme({
@@ -21,7 +22,7 @@ const defaultTheme = createTheme({
     },
     warning: {
       main: "#FFC400",
-      contrastText: "#FFFFFF",
+      contrastText: "#2E2E2E",
     },
     text: {
       primary: "#2E2E2E",
@@ -49,6 +50,16 @@ const defaultTheme = createTheme({
     },
     MuiDialogContent: {
       styleOverrides: { root: ({ theme }) => theme.unstable_sx({ paddingTop: `${theme.spacing(2)} !important` }) },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            ":hover": {
+              borderColor: "#078FFF38",
+            },
+          }),
+      },
     },
   },
   typography: {

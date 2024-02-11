@@ -69,19 +69,19 @@ export default function AppBars({ title }: { title: string }) {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
+            <MenuItem sx={{ paddingY: "10px" }} onClick={handleClose}>
               <ListItemIcon>
                 <AccountCircleOutlined fontSize="small" />
               </ListItemIcon>
               Profile
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem sx={{ paddingY: "10px" }} onClick={handleClose}>
               <ListItemIcon>
                 <ShoppingCartOutlined fontSize="small" />
               </ListItemIcon>
               Transactions
             </MenuItem>
-            <MenuItem onClick={handleLogout}>
+            <MenuItem sx={{ paddingY: "10px" }} onClick={handleLogout}>
               <ListItemIcon>
                 <LogoutOutlined fontSize="small" />
               </ListItemIcon>

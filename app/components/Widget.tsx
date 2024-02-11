@@ -2,12 +2,12 @@ import { Box, Card, Stack, SxProps, Typography } from "@mui/material";
 import { Theme } from "@mui/system/createTheme/createTheme";
 import React, { ReactElement } from "react";
 
-interface CardWidgetProps {
+interface ICardWidgetProps {
   children?: React.ReactNode;
   sx?: React.CSSProperties;
 }
 
-export const CardWidget: React.FC<CardWidgetProps> = ({ children, sx }) => {
+export const CardWidget: React.FC<ICardWidgetProps> = ({ children, sx }) => {
   const cardStyles: React.CSSProperties = {
     padding: "20px",
     borderRadius: "14px",

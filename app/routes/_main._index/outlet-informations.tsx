@@ -17,7 +17,7 @@ export default function OutletInformation() {
                     Total Orders
                   </Typography>
                   <Typography fontSize={10} color="text.secondary">
-                    (This year)
+                    (Today)
                   </Typography>
                 </Stack>
                 <Typography color="success.main" fontFamily="poppins" fontWeight="medium" fontSize={20}>
@@ -28,12 +28,6 @@ export default function OutletInformation() {
             <Box width="100%">
               <Stack direction="row" sx={{ marginTop: "1rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography color="text.primary" fontWeight="medium">
-                  Today
-                </Typography>
-                <Typography color="text.secondary">{formatNumber("1155205")}</Typography>
-              </Stack>
-              <Stack direction="row" sx={{ marginTop: "0.5rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-                <Typography color="text.primary" fontWeight="medium">
                   This Week
                 </Typography>
                 <Typography color="text.secondary">{formatNumber("1155205")}</Typography>
@@ -41,6 +35,12 @@ export default function OutletInformation() {
               <Stack direction="row" sx={{ marginTop: "0.5rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography color="text.primary" fontWeight="medium">
                   This Month
+                </Typography>
+                <Typography color="text.secondary">{formatNumber("1155205")}</Typography>
+              </Stack>
+              <Stack direction="row" sx={{ marginTop: "0.5rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+                <Typography color="text.primary" fontWeight="medium">
+                  This Year
                 </Typography>
                 <Typography color="text.secondary">{formatNumber("1155205")}</Typography>
               </Stack>
@@ -57,7 +57,7 @@ export default function OutletInformation() {
                     Total Earn
                   </Typography>
                   <Typography fontSize={10} color="text.secondary">
-                    (This year)
+                    (Today)
                   </Typography>
                 </Stack>
                 <Typography color="primary.main" fontFamily="poppins" fontWeight="medium" fontSize={20}>
@@ -68,12 +68,6 @@ export default function OutletInformation() {
             <Box width="100%">
               <Stack direction="row" sx={{ marginTop: "1rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography color="text.primary" fontWeight="medium">
-                  Today
-                </Typography>
-                <Typography color="text.secondary">Rp {formatNumber("1155205")}</Typography>
-              </Stack>
-              <Stack direction="row" sx={{ marginTop: "0.5rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-                <Typography color="text.primary" fontWeight="medium">
                   This Week
                 </Typography>
                 <Typography color="text.secondary">Rp {formatNumber("1155205")}</Typography>
@@ -81,6 +75,12 @@ export default function OutletInformation() {
               <Stack direction="row" sx={{ marginTop: "0.5rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography color="text.primary" fontWeight="medium">
                   This Month
+                </Typography>
+                <Typography color="text.secondary">Rp {formatNumber("1155205")}</Typography>
+              </Stack>
+              <Stack direction="row" sx={{ marginTop: "0.5rem", display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+                <Typography color="text.primary" fontWeight="medium">
+                  This Year
                 </Typography>
                 <Typography color="text.secondary">Rp {formatNumber("1155205")}</Typography>
               </Stack>

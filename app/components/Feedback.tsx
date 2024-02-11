@@ -1,4 +1,6 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { SaveOutlined } from "@mui/icons-material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider } from "@mui/material";
+import { Form } from "@remix-run/react";
 import { options } from "node_modules/axios/index.cjs";
 import { FormEvent, ReactNode, createContext, useContext, useEffect, useState } from "react";
 
@@ -113,14 +115,7 @@ export function FeedbackProvider({ children }: { children: ReactNode | ReactNode
         return <AlertDialog key={i} options={e} onClose={() => hideAlertDialog(e.key)} />;
       })}
       {isConfirmationDialog.map((e, i) => {
-        return (
-          <ConfirmationDialog
-            key={i}
-            options={e}
-            onClose={() => hideConfirmationDialog(e.key)}
-            onOk={() => hideConfirmationDialog(e.key)}
-          />
-        );
+        return <ConfirmationDialog key={i} options={e} onClose={() => hideConfirmationDialog(e.key)} />;
       })}
       {isFormDialog.map((e, i) => {
         return <FormDialog key={i} options={e} onClose={() => hideFormDialog(e.key)} />;
@@ -143,15 +138,19 @@ const AlertDialog = ({ options, onClose }: { options: IAlertDialogOptions; onClo
   );
 };
 
-const ConfirmationDialog = ({
-  options,
-  onClose,
-  onOk,
-}: {
-  options: IConfirmationDialogOptions;
-  onClose: () => void;
-  onOk: () => void;
-}) => {
+const ConfirmationDialog = ({ options, onClose }: { options: IConfirmationDialogOptions; onClose: () => void }) => {
+  const onOk = () => {
+    if (options.onOk !== undefined) {
+      options.onOk();
+    }
+    onClose();
+  };
+  const onCancel = () => {
+    if (options.onClose !== undefined) {
+      options.onClose();
+    }
+    onClose();
+  };
   return (
     <Dialog open={true} onClose={onClose} fullWidth={true} maxWidth="xs">
       <DialogTitle>{options.title}</DialogTitle>
@@ -159,7 +158,7 @@ const ConfirmationDialog = ({
         <DialogContentText>{options.message}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={onCancel}>Cancel</Button>
         <Button onClick={onOk}>{options.okLabel ?? "Ok"}</Button>
       </DialogActions>
     </Dialog>
@@ -171,21 +170,33 @@ const FormDialog = ({ options, onClose }: { options: IFormDialogOptions; onClose
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const result = options.onSubmit(e);
     if (result) {
       onClose();
     }
   };
 
+  const onCancel = () => {
+    if (options.onClose !== undefined) {
+      options.onClose();
+    }
+    onClose();
+  };
+
   return (
     <Dialog open={true} onClose={onClose} fullWidth={true} maxWidth="xs">
       <form onSubmit={onSubmit}>
         <DialogTitle>{options.title}</DialogTitle>
+        <Divider />
         <DialogContent>{options.children}</DialogContent>
-        <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button type="submit">{options.submitLabel}</Button>
+        <Divider />
+        <DialogActions sx={{ paddingX: "1.5rem", paddingY: "1rem" }}>
+          <Button onClick={onCancel} sx={{ paddingX: "1rem" }} color="error" variant="outlined" disableElevation>
+            Cancel
+          </Button>
+          <Button type="submit" sx={{ paddingX: "1rem" }} color="primary" variant="contained" disableElevation startIcon={<SaveOutlined />}>
+            {options.submitLabel}
+          </Button>
         </DialogActions>
       </form>
     </Dialog>

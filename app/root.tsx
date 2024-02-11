@@ -3,12 +3,13 @@ import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, isRouteErr
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { Box, CssBaseline, Stack, ThemeProvider, Typography } from "@mui/material";
-import { Children, useEffect } from "react";
+import { Children, useContext, useEffect } from "react";
 import { withEmotionCache } from "@emotion/react";
 import theme from "./theme/theme";
 import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 import { FeedbackProvider } from "./components/Feedback";
 import { LoadingProvider, useLoading } from "./components/Loading";
+import clientStyleContext from "./clientStyleContext";
 
 const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://font.googleapis.com" },
@@ -21,6 +22,7 @@ interface IDocumentProps {
 }
 
 const Document = withEmotionCache(({ children, title }: IDocumentProps, emotionCache) => {
+  const clientStyleData = useContext(clientStyleContext);
   useEnhancedEffect(() => {
     emotionCache.sheet.container = document.head;
     const tags = emotionCache.sheet.tags;
@@ -28,6 +30,7 @@ const Document = withEmotionCache(({ children, title }: IDocumentProps, emotionC
     tags.forEach((tag) => {
       (emotionCache.sheet as any)._insertTag(tag);
     });
+    clientStyleData.reset();
   }, []);
   return (
     <html lang="en">
@@ -93,8 +96,25 @@ interface IRouteError {
   statusText: string;
 }
 
-export function ErrorBoundary() {
-  const error = useRouteError();
+export const ErrorBoundary = withEmotionCache((_, emotionCache) => {
+  const error = useRouteError() as any;
+  const clientStyleData = useContext(clientStyleContext);
+
+  // Only executed on client
+  useEnhancedEffect(() => {
+    // re-link sheet container
+    emotionCache.sheet.container = document.head;
+    // re-inject tags
+    const tags = emotionCache.sheet.tags;
+    emotionCache.sheet.flush();
+    tags.forEach((tag) => {
+      // eslint-disable-next-line no-underscore-dangle
+      (emotionCache.sheet as any)._insertTag(tag);
+    });
+    // reset cache to reapply global styles
+    clientStyleData.reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   if (isRouteErrorResponse(error)) {
     return (
       <html>
@@ -169,4 +189,4 @@ export function ErrorBoundary() {
       </html>
     );
   }
-}
+});

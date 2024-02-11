@@ -1,16 +1,18 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import Badge from "~/components/Badge";
 import { CardWidget } from "~/components/Widget";
+import defaultTheme from "~/theme/theme";
+import { formatDate, formatNumber } from "~/utils/formatUtils";
 
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-  return { name, calories, fat, carbs, protein };
+function createData(orderID: string, dateTime: string, invoice: string, cashier: string, payment: string, amount: number, status: number) {
+  return { orderID, dateTime, invoice, cashier, payment, amount, status };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData("001", "29 Jan 2024 08:55", "20240129085501", "Acep Pardidi", "Cash", 80000, 1),
+  createData("002", "29 Jan 2024 09:55", "20240129095502", "Jajat Knalpot", "Cash", 50000, 2),
+  createData("003", "29 Jan 2024 10:55", "20240129105503", "Dadang Sutarman", "Cash", 650000, 2),
+  createData("004", "29 Jan 2024 11:55", "20240129115504", "Acep Pardidi", "Cash", 1000000, 1),
 ];
 
 export default function TodayOrders() {
@@ -22,24 +24,48 @@ export default function TodayOrders() {
       <TableContainer component="div">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableRow sx={{ textAlign: "start" }}>
+              <TableCell>Order ID</TableCell>
+              <TableCell>No. Invoice</TableCell>
+              <TableCell>Date Time</TableCell>
+              <TableCell>Cashier</TableCell>
+              <TableCell>Payment</TableCell>
+              <TableCell align="center">Status</TableCell>
+              <TableCell>Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableRow key={row.invoice} sx={{ "&:last-child td, &:last-child th": { border: 0 }, color: defaultTheme.palette.text.secondary }}>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  #{row.orderID}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell component="td" scope="row">
+                  INV-{row.invoice}
+                </TableCell>
+                <TableCell component="td" scope="row">
+                  {row.dateTime}
+                </TableCell>
+                <TableCell component="td" scope="row">
+                  {row.cashier}
+                </TableCell>
+                <TableCell component="td" scope="row">
+                  {row.payment}
+                </TableCell>
+                <TableCell component="td" scope="row" align="center">
+                  {row.status == 1 ? (
+                    <Badge color="success" py="5px">
+                      Paid
+                    </Badge>
+                  ) : (
+                    <Badge color="warning" py="5px">
+                      Unpaid
+                    </Badge>
+                  )}
+                </TableCell>
+                <TableCell component="td" scope="row">
+                  Rp. {formatNumber(row.amount.toString())}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -11,7 +11,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.6",
     "@mui/material": "^5.15.6",
@@ -20,12 +22,14 @@
     "@remix-run/node": "^2.5.1",
     "@remix-run/react": "^2.5.1",
     "@remix-run/serve": "^2.5.1",
+    "@scalar/api-reference": "^1.14.0",
     "axios": "^1.6.6",
     "forb": "^1.2.0",
     "isbot": "^4.1.0",
     "luxon": "^3.4.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "veaury": "^2.3.12"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.5.1",
